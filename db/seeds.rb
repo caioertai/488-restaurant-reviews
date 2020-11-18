@@ -8,11 +8,15 @@
 # Restaurant.destroy_all
 
 puts "Creating restaurants..."
-Restaurant.create!(
+carretao = Restaurant.create!(
   name: "Carretão",
   stars: 5,
   address: "Ipanema, Rio"
 )
+
+Review.create!(content: "Great BBQ!", restaurant: carretao)
+Review.create!(content: "Nice place!", restaurant: carretao)
+Review.create!(content: "Too expensive...", restaurant: carretao)
 
 10.times do
   Restaurant.create!(

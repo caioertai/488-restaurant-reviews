@@ -3,6 +3,7 @@
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
+  <%= link_to "See chef", chef_restaurant_path(@restaurant) %>
 </p>
 
 <p>
@@ -14,6 +15,22 @@
   <strong>Stars:</strong>
   <%= @restaurant.stars %>
 </p>
+
+<!-- Reviews -->
+<h2>Reviews</h2>
+<ul>
+  <!-- @restaurant.reviews <--- collection of reviews -->
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+      <%= review.content %>
+      <%= link_to "Delete", review_path(review), method: :delete, "data-confirm": "Are you sure?" %>
+    </li>
+  <% end %>
+  <li>
+    <!-- /restaurants/:restaurant_id/reviews/new -->
+    <%= link_to "Add review", new_restaurant_review_path(@restaurant) %>
+  </li>
+</ul>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
